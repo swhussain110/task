@@ -1,0 +1,18 @@
+Task:
+
+Create a tiny CMS with larval backend with the following features.
+
+User roles: Admin, Employee, Support Agent
+
+Admin shoul add/edit/delete/list/search users.
+Employee should be able add/edit/list/search users. Once a user details are edited, admin needs to approve it.
+Support agent should be able to list/search users
+
+1 - Login, signup
+2 - Roles & Permissions management (permissions should be attached to the roles and then the roles should be assigned to the users)
+3 - Use single route to authenticate all the users with any type of role
+4 - Design database tables accordingly and should be managed by migrations.
+5 - Use larval database seeder to seed the database.
+6 - Use AJAX for form submission and avoid page refresh
+
+Read the very carefully and finish up with this task in maximum 2 days.
