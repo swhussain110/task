@@ -3,7 +3,7 @@
     Search User
 @endsection
 @section('content')
-    <form action="" method="get">
+    <form method="get">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" class="form-control" name="name" id="name">

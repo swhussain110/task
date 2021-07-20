@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RolesManagement;
+use App\Http\Controllers\ApprovalControllar;
 use App\Http\Controllers\RegisterationController;
 
 /*
@@ -38,6 +39,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users',[RolesManagement::class, 'index'])->name('usersindex');
     Route::get('user/{id?}', [RolesManagement::class, 'editrole'])->name('editrole');
     Route::post('/updaterole', [RolesManagement::class, 'assignrole'])->name('assignrole');
+
+    //Approval
+    Route::get('/approvals',[ApprovalControllar::class, 'index'])->name('approvals');
+    Route::get('/approve/{id?}',[ApprovalControllar::class, 'approve'])->name('approve');
 
 });
  //Login Routes

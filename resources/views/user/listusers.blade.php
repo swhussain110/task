@@ -16,7 +16,9 @@
                 <td>Action</td>
             </tr>
         </thead>
-        @foreach ($users as $user)
+
+        <tbody>
+            @foreach ($users as $user)
             <tr>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
@@ -32,8 +34,6 @@
                 </td>
             </tr>
         @endforeach
-        <tbody>
-
         </tbody>
     </table>
 @endsection

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
+use Database\Seeders\ApprovalSeeder;
 use Database\Seeders\RoleAndPermissionSeeder;
 
 
@@ -22,6 +23,8 @@ class DatabaseSeeder extends Seeder
             RoleAndPermissionSeeder::class,
 
             UserSeeder::class,
+
+            ApprovalSeeder::class
 
         ]);
     }

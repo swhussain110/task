@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Approval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -43,12 +45,30 @@ class UserController extends Controller
     }
     public function updateuser(Request $request)
     {
-        $user = User::find($request->id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
+        if(Auth::user()->roles[0]->name == "Employee"){
+            // dd($request->id);
+            // $user = User::find($request->id);
+            $approval = new Approval();
+            $approval->user_id = $request->id;
+            $approval->name = $request->name;
+            $approval->email = $request->email;
+
+            if($approval->save()){
+                return response()->json(['status'=>200, 'message'=>'Saved For Approval']);
+            }
+        } else {
+            $user = User::find($request->id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->save();
+
+
+            return response()->json(['status'=>200, 'message'=>'Updated Successfuly']); 
+
+        }
+
         
-        return response()->json(['status'=>200, 'message'=>'Updated Successfuly']);
+        
         
     }
 
@@ -69,16 +89,13 @@ class UserController extends Controller
         
     }
 
-
     public function searchuser($name="Support")
     {
-        if($name){
-            $users = DB::table('users')->where('name','LIKE','%'.$name.'%')->get();
+        if (request()->get('name')) {
+            $users = DB::table('users')->where('name', 'LIKE', '%'.request()->get('name').'%')->get();
             return view('user.searchuser', ['users'=>$users]);
         }
         $users=User::all();
-        return view('user.searchuser',['users'=>$users]);
-
-
+        return view('user.searchuser', ['users'=>$users]);
     }
 }
